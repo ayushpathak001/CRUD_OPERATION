@@ -12,6 +12,12 @@ app = FastAPI()
 TodoCollection = mongo_db['Todo']
 
 @app.get("/")
+def home():
+    return {
+        "msg" : "Server is running perfectly..."
+    }
+
+@app.get("/")
 async def index_view():
     data = await TodoCollection.find().to_list(length=None)
     
