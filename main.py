@@ -2,9 +2,10 @@ from fastapi import FastAPI
 from models import TodoModel  ,TodoHelper
 from dotenv import load_dotenv
 import os 
-load_dotenv()
+
 from config import mongo_db
 from bson import ObjectId
+load_dotenv()
 
 app = FastAPI()
 
@@ -17,7 +18,7 @@ def home():
         "msg" : "Server is running perfectly..."
     }
 
-@app.get("/")
+@app.get("/all_todos")
 async def index_view():
     data = await TodoCollection.find().to_list(length=None)
     
